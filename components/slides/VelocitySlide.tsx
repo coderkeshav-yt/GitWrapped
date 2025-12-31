@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { SlideLayout } from '../SlideLayout';
-import { GitStoryData } from '../../types';
+import { GitWrappedData } from '../../types';
 import { TextReveal } from '../TextReveal';
 import { ResponsiveContainer, LineChart, Line, YAxis } from 'recharts';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
-export const VelocitySlide: React.FC<{ data: GitStoryData }> = ({ data }) => {
+export const VelocitySlide: React.FC<{ data: GitWrappedData }> = ({ data }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
 

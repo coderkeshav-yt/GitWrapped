@@ -2,7 +2,7 @@
 
 import React from 'react';
 import { SlideLayout } from '../SlideLayout';
-import { GitStoryData } from '../../types';
+import { GitWrappedData } from '../../types';
 import { TextReveal } from '../TextReveal';
 import { motion } from 'framer-motion';
 import { Star, Trophy, Medal, Award } from 'lucide-react';
@@ -16,7 +16,7 @@ const langColors: Record<string, string> = {
   "Ruby": "#701516", "PHP": "#4F5D95", "Shell": "#89e051", "Dart": "#00B4AB",
 };
 
-export const TopReposSlide: React.FC<{ data: GitStoryData }> = ({ data }) => {
+export const TopReposSlide: React.FC<{ data: GitWrappedData }> = ({ data }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const { topRepos } = data;

@@ -49,7 +49,7 @@ export interface StackMatch {
   icon: string;
 }
 
-export interface GitStoryData {
+export interface GitWrappedData {
   username: string;
   avatarUrl: string;
   year: number;

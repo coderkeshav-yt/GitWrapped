@@ -1,4 +1,4 @@
-import { GitStoryData, Language, Repository, ContributionBreakdown, CommunityStats } from "../types";
+import { GitWrappedData, Language, Repository, ContributionBreakdown, CommunityStats } from "../types";
 import {
   calculateLanguageScores,
   getTopLanguages,
@@ -10,7 +10,7 @@ import { calculateStackMatch } from "./stackMatchingService";
 
 const GITLAB_API_BASE = "https://gitlab.com/api/v4";
 
-export const fetchGitLabUserStory = async (username: string, token: string): Promise<GitStoryData> => {
+export const fetchGitLabUserStory = async (username: string, token: string): Promise<GitWrappedData> => {
   const headers: HeadersInit = {
     'Authorization': `Bearer ${token}`,
     'Content-Type': 'application/json',

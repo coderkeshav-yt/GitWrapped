@@ -1,4 +1,4 @@
-import { GitStoryData } from "./types";
+import { GitWrappedData } from "./types";
 
 export const SLIDE_DURATION_MS = 6000; // 6 seconds per slide
 
@@ -60,7 +60,7 @@ velocityData.forEach((day, index) => {
   }
 });
 
-export const MOCK_DATA: GitStoryData = {
+export const MOCK_DATA: GitWrappedData = {
   username: "creative-dev",
   avatarUrl: "https://picsum.photos/200/200",
   year: 2025,

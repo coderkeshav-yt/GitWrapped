@@ -2,12 +2,12 @@
 
 import React from 'react';
 import { SlideLayout } from '../SlideLayout';
-import { GitStoryData } from '../../types';
+import { GitWrappedData } from '../../types';
 import { TextReveal } from '../TextReveal';
 import { motion } from 'framer-motion';
 import { useTheme } from '@/context/ThemeContext';
 
-export const LanguagesSlide: React.FC<{ data: GitStoryData }> = ({ data }) => {
+export const LanguagesSlide: React.FC<{ data: GitWrappedData }> = ({ data }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const topLang = data.topLanguages[0];

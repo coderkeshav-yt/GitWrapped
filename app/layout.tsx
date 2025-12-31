@@ -31,12 +31,12 @@ const spaceMono = Space_Mono({
 })
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://gitstory.pankajk.tech'),
-  title: 'GitStory 2025 - Your Year in Code | GitHub Wrapped',
-  description: 'Relive your coding journey with GitStory 2025. Transform your GitHub contributions into a stunning cinematic experience with beautiful animations and personalized insights. Your GitHub Wrapped for 2025!',
+  metadataBase: new URL('https://GitWrapped.pankajk.tech'),
+  title: 'GitWrapped 2025 - Your Year in Code | GitHub Wrapped',
+  description: 'Relive your coding journey with GitWrapped 2025. Transform your GitHub contributions into a stunning cinematic experience with beautiful animations and personalized insights. Your GitHub Wrapped for 2025!',
   keywords: [
     // Primary keywords
-    'GitStory',
+    'GitWrapped',
     'Git Story',
     'GitHub Wrapped',
     'GitHub Wrapped 2025',
@@ -75,9 +75,9 @@ export const metadata: Metadata = {
     'Coding Journey 2025',
     'GitHub Cinematic Experience',
   ],
-  authors: [{ name: 'GitStory', url: 'https://gitstory.pankajk.tech' }],
-  creator: 'GitStory',
-  publisher: 'GitStory',
+  authors: [{ name: 'GitWrapped', url: 'https://GitWrapped.pankajk.tech' }],
+  creator: 'GitWrapped',
+  publisher: 'GitWrapped',
   robots: {
     index: true,
     follow: true,
@@ -91,34 +91,34 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: 'website',
-    url: 'https://gitstory.pankajk.tech',
-    title: 'GitStory 2025 - Your Year in Code | GitHub Wrapped',
-    description: 'Relive your coding journey with GitStory 2025. Transform your GitHub contributions into a stunning cinematic experience. Your GitHub Wrapped for 2025!',
-    siteName: 'GitStory',
+    url: 'https://GitWrapped.pankajk.tech',
+    title: 'GitWrapped 2025 - Your Year in Code | GitHub Wrapped',
+    description: 'Relive your coding journey with GitWrapped 2025. Transform your GitHub contributions into a stunning cinematic experience. Your GitHub Wrapped for 2025!',
+    siteName: 'GitWrapped',
     locale: 'en_US',
     images: [
       {
-        url: 'https://gitstory.pankajk.tech/card.png',
-        secureUrl: 'https://gitstory.pankajk.tech/card.png',
+        url: 'https://GitWrapped.pankajk.tech/card.png',
+        secureUrl: 'https://GitWrapped.pankajk.tech/card.png',
         width: 1200,
         height: 630,
-        alt: 'GitStory 2025 - GitHub Wrapped Preview',
+        alt: 'GitWrapped 2025 - GitHub Wrapped Preview',
         type: 'image/png',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'GitStory 2025 - Your Year in Code | GitHub Wrapped',
-    description: 'Relive your coding journey with GitStory 2025. Transform your GitHub contributions into a stunning cinematic experience. Your GitHub Wrapped for 2025!',
-    images: ['https://gitstory.pankajk.tech/card.png'],
+    title: 'GitWrapped 2025 - Your Year in Code | GitHub Wrapped',
+    description: 'Relive your coding journey with GitWrapped 2025. Transform your GitHub contributions into a stunning cinematic experience. Your GitHub Wrapped for 2025!',
+    images: ['https://GitWrapped.pankajk.tech/card.png'],
     creator: '@pankajkumar_dev',
     site: '@pankajkumar_dev',
   },
   appleWebApp: {
     capable: true,
     statusBarStyle: 'black-translucent',
-    title: 'GitStory',
+    title: 'GitWrapped',
   },
   icons: {
     icon: [
@@ -134,7 +134,7 @@ export const metadata: Metadata = {
     ],
   },
   alternates: {
-    canonical: 'https://gitstory.pankajk.tech',
+    canonical: 'https://GitWrapped.pankajk.tech',
   },
 }
 
@@ -150,9 +150,9 @@ export const viewport: Viewport = {
 const jsonLd = {
   '@context': 'https://schema.org',
   '@type': 'WebApplication',
-  name: 'GitStory 2025',
+  name: 'GitWrapped 2025',
   description: 'Transform your GitHub contributions into a stunning cinematic experience. Your GitHub Wrapped for 2025!',
-  url: 'https://gitstory.pankajk.tech',
+  url: 'https://GitWrapped.pankajk.tech',
   applicationCategory: 'DeveloperApplication',
   operatingSystem: 'Web',
   offers: {
@@ -165,8 +165,8 @@ const jsonLd = {
     name: 'Pankaj Kumar',
     url: 'https://twitter.com/pankajkumar_dev',
   },
-  screenshot: 'https://gitstory.pankajk.tech/card.png',
-  image: 'https://gitstory.pankajk.tech/card.png',
+  screenshot: 'https://GitWrapped.pankajk.tech/card.png',
+  image: 'https://GitWrapped.pankajk.tech/card.png',
   featureList: [
     'GitHub Year in Review',
     'Contribution Statistics',
@@ -175,7 +175,7 @@ const jsonLd = {
     'Cinematic Animations',
     'Downloadable Poster',
   ],
-  keywords: 'GitStory, GitHub Wrapped, GitHub Wrapped 2025, Git Wrapped, Developer Stats, Code Visualization',
+  keywords: 'GitWrapped, GitHub Wrapped, GitHub Wrapped 2025, Git Wrapped, Developer Stats, Code Visualization',
 }
 
 export default function RootLayout({
@@ -199,7 +199,7 @@ export default function RootLayout({
             __html: `
               (function() {
                 try {
-                  var theme = localStorage.getItem('gitstory-theme');
+                  var theme = localStorage.getItem('GitWrapped-theme');
                   if (theme === 'light') {
                     document.documentElement.classList.remove('dark');
                     document.documentElement.classList.add('light');

@@ -2,13 +2,13 @@
 
 import React from 'react';
 import { SlideLayout } from '../SlideLayout';
-import { GitStoryData } from '../../types';
+import { GitWrappedData } from '../../types';
 import { TextReveal } from '../TextReveal';
 import { motion } from 'framer-motion';
 import { Users, Star } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
-export const CommunitySlide: React.FC<{ data: GitStoryData }> = ({ data }) => {
+export const CommunitySlide: React.FC<{ data: GitWrappedData }> = ({ data }) => {
   const { theme } = useTheme();
   const isDark = theme === 'dark';
   const { community } = data;

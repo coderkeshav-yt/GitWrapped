@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { AnimatePresence } from 'framer-motion';
-import { GitStoryData, SlideType } from '../types';
+import { GitWrappedData, SlideType } from '../types';
 import { SLIDE_DURATION_MS } from '../constants';
 import { TitleSlide } from './slides/TitleSlide';
 import { VelocitySlide } from './slides/VelocitySlide';
@@ -20,7 +20,7 @@ import { X, Sun, Moon, Play, Pause, Share2 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
 interface StoryContainerProps {
-  data: GitStoryData;
+  data: GitWrappedData;
   onComplete: () => void;
 }
 

@@ -1,4 +1,4 @@
-import { GitStoryData, Language, Repository, ContributionBreakdown, CommunityStats } from "../types";
+import { GitWrappedData, Language, Repository, ContributionBreakdown, CommunityStats } from "../types";
 import { MOCK_DATA } from "../constants";
 import {
     calculateLanguageScores,
@@ -98,7 +98,7 @@ const fetchContributionsWithGraphQL = async (username: string, headers: HeadersI
     }
 };
 
-export const fetchUserStory = async (username: string, token?: string): Promise<GitStoryData> => {
+export const fetchUserStory = async (username: string, token?: string): Promise<GitWrappedData> => {
     if (username.toLowerCase() === 'demo') {
         return new Promise((resolve) => setTimeout(() => resolve(MOCK_DATA), 1500));
     }
