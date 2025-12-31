@@ -160,7 +160,7 @@ export const PosterSlide: React.FC<{ data: GitWrappedData }> = ({ data }) => {
               src={data.avatarUrl}
               alt="Avatar"
               crossOrigin="anonymous"
-              className={`w-16 h-16 rounded-full border grayscale ${isDark ? 'border-neutral-500' : 'border-neutral-400'}`}
+              className={`w-16 h-16 rounded-full border ${isDark ? 'border-neutral-500' : 'border-neutral-400'}`}
             />
             <div className="text-right">
               <h1 className={`text-3xl font-serif italic ${isDark ? 'text-white' : 'text-black'}`}>GitWrapped</h1>
@@ -208,10 +208,10 @@ export const PosterSlide: React.FC<{ data: GitWrappedData }> = ({ data }) => {
           {/* Save Button */}
           <button
             className={`flex items-center gap-2 px-6 py-3 rounded-full font-bold transition-all active:scale-95 ${hasDownloaded
-                ? "bg-green-500 text-white"
-                : error
-                  ? "bg-red-500 text-white"
-                  : isDark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"
+              ? "bg-green-500 text-white"
+              : error
+                ? "bg-red-500 text-white"
+                : isDark ? "bg-white text-black hover:bg-neutral-200" : "bg-black text-white hover:bg-neutral-800"
               }`}
             onClick={handleDownload}
             onPointerDown={(e) => e.stopPropagation()}
