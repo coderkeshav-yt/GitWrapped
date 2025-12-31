@@ -49,6 +49,11 @@ export interface StackMatch {
   icon: string;
 }
 
+export interface RoastData {
+  roast: string;
+  toast: string;
+}
+
 export interface GitWrappedData {
   username: string;
   avatarUrl: string;
@@ -66,6 +71,7 @@ export interface GitWrappedData {
   contributionBreakdown: ContributionBreakdown;
   community: CommunityStats;
   stackMatch: StackMatch;
+  roastData?: RoastData; // Optional AI-generated roast/toast
 }
 
 export enum SlideType {
@@ -81,4 +87,5 @@ export enum SlideType {
   REPO = 9,
   STACK_MATCH = 10,
   POSTER = 11,
+  ROAST = 12, // AI-powered roast/toast slide
 }

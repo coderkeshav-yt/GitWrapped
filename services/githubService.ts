@@ -8,6 +8,7 @@ import {
     calculateProductivity
 } from "./scoringAlgorithms";
 import { calculateStackMatch } from "./stackMatchingService";
+import { generateRoastAndToast } from "./geminiService";
 
 // Use server-side proxy to avoid CORS issues in production
 const GITHUB_API_BASE = "/api/github";
@@ -409,7 +410,8 @@ export const fetchUserStory = async (username: string, token?: string): Promise<
         // G. Stack Match
         const stackMatch = calculateStackMatch(topLanguages);
 
-        return {
+        // H. Build base wrapped data
+        const wrappedData: GitWrappedData = {
             username: user.login,
             avatarUrl: user.avatar_url,
             year: 2025,
@@ -427,6 +429,19 @@ export const fetchUserStory = async (username: string, token?: string): Promise<
             community: communityStats,
             stackMatch
         };
+
+        // I. Generate AI Roast/Toast in background (non-blocking for fast story start)
+        generateRoastAndToast(wrappedData)
+            .then(roastData => {
+                wrappedData.roastData = roastData;
+                console.log('✅ AI content generated successfully');
+            })
+            .catch(err => {
+                console.warn('⚠️ AI generation failed, will use fallbacks on slide:', err.message);
+                // Fallback will be used in the component
+            });
+
+        return wrappedData;
 
     } catch (error) {
         console.error("Error generating story:", error);

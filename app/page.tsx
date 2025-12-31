@@ -103,6 +103,20 @@ export default function Home() {
 
       setStoryData(data)
       setShowStory(true)
+
+      // Set up listener for background AI generation completion
+      // This will update the state when roastData becomes available
+      const checkInterval = setInterval(() => {
+        if (data.roastData) {
+          console.log('🎉 Background AI generation complete, updating state');
+          setStoryData({ ...data }); // Trigger re-render with updated roastData
+          clearInterval(checkInterval);
+        }
+      }, 500); // Check every 500ms
+
+      // Clear interval after 15 seconds (fallback will be used if AI takes too long)
+      setTimeout(() => clearInterval(checkInterval), 15000);
+
     } catch (err: any) {
       console.error(err)
 

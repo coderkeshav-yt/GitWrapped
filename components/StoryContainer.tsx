@@ -16,6 +16,7 @@ import { TopReposSlide } from './slides/TopReposSlide';
 import { RepoSlide } from './slides/RepoSlide';
 import { PosterSlide } from './slides/PosterSlide';
 import { SlideStackMatch } from './slides/SlideStackMatch';
+import { RoastSlide } from './slides/RoastSlide';
 import { X, Sun, Moon, Play, Pause, Share2 } from 'lucide-react';
 import { useTheme } from '@/context/ThemeContext';
 
@@ -29,7 +30,7 @@ export const StoryContainer: React.FC<StoryContainerProps> = ({ data, onComplete
   const isDark = theme === 'dark';
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isPaused, setIsPaused] = useState(false);
-  const totalSlides = 12; // Updated to include Stack Match
+  const totalSlides = 13; // Updated to include Roast slide
   const progressIntervalRef = useRef<number | null>(null);
   const [progress, setProgress] = useState(0);
 
@@ -60,9 +61,12 @@ export const StoryContainer: React.FC<StoryContainerProps> = ({ data, onComplete
     const startTime = Date.now();
     const startProgress = progress;
 
+    // Give more time for RoastSlide (10 seconds instead of 6)
+    const slideDuration = currentSlide === SlideType.ROAST ? 10000 : SLIDE_DURATION_MS;
+
     const animateProgress = () => {
       const elapsed = Date.now() - startTime;
-      const newProgress = Math.min(100, startProgress + (elapsed / SLIDE_DURATION_MS) * 100);
+      const newProgress = Math.min(100, startProgress + (elapsed / slideDuration) * 100);
 
       setProgress(newProgress);
 
@@ -168,6 +172,7 @@ export const StoryContainer: React.FC<StoryContainerProps> = ({ data, onComplete
       case SlideType.REPO: return <RepoSlide data={data} />;
       case SlideType.STACK_MATCH: return <SlideStackMatch data={data.stackMatch} />;
       case SlideType.POSTER: return <PosterSlide data={data} />;
+      case SlideType.ROAST: return <RoastSlide data={data} />;
       default: return null;
     }
   };
