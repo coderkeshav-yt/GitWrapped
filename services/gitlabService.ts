@@ -1,11 +1,12 @@
 import { GitStoryData, Language, Repository, ContributionBreakdown, CommunityStats } from "../types";
-import { 
-  calculateLanguageScores, 
-  getTopLanguages, 
-  calculateRepoScore, 
+import {
+  calculateLanguageScores,
+  getTopLanguages,
+  calculateRepoScore,
   calculateArchetype,
-  calculateProductivity 
+  calculateProductivity
 } from "./scoringAlgorithms";
+import { calculateStackMatch } from "./stackMatchingService";
 
 const GITLAB_API_BASE = "https://gitlab.com/api/v4";
 
@@ -18,14 +19,14 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
   try {
     // 1. Fetch User Info
     const userRes = await fetch(`${GITLAB_API_BASE}/user`, { headers });
-    
+
     if (userRes.status === 401) {
       throw new Error("Invalid GitLab token. Please check your token and try again.");
     }
     if (!userRes.ok) {
       throw new Error(`Failed to fetch user data. (Status: ${userRes.status})`);
     }
-    
+
     const user = await userRes.json();
 
     // 2. Fetch all data in parallel
@@ -40,7 +41,7 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
     ]);
 
     const projects = projectsRes.ok ? await projectsRes.json() : [];
-    
+
     // Combine events
     const e1 = eventsRes1.ok ? await eventsRes1.json() : [];
     const e2 = eventsRes2.ok ? await eventsRes2.json() : [];
@@ -66,9 +67,9 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
         const date = new Date(e.created_at);
         const dateStr = date.toISOString().split('T')[0];
         const h = date.getHours();
-        
+
         hourCounts[h] = (hourCounts[h] || 0) + 1;
-        
+
         if (e.action_name === 'pushed to' || e.action_name === 'pushed new') {
           const pushCount = e.push_data?.commit_count || 1;
           dateCommits[dateStr] = (dateCommits[dateStr] || 0) + pushCount;
@@ -118,8 +119,8 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
 
     // B. Process projects for languages and repos
     const langColors: Record<string, string> = {
-      "TypeScript": "#3178C6", "JavaScript": "#F7DF1E", "HTML": "#e34c26", 
-      "CSS": "#563d7c", "Vue": "#41b883", "Python": "#3572A5", "Ruby": "#701516", 
+      "TypeScript": "#3178C6", "JavaScript": "#F7DF1E", "HTML": "#e34c26",
+      "CSS": "#563d7c", "Vue": "#41b883", "Python": "#3572A5", "Ruby": "#701516",
       "PHP": "#4F5D95", "Java": "#b07219", "Kotlin": "#A97BFF", "Go": "#00ADD8",
       "Rust": "#dea584", "C": "#555555", "C++": "#f34b7d", "C#": "#178600",
       "Swift": "#F05138", "Dart": "#00B4AB", "Shell": "#89e051",
@@ -153,7 +154,7 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
     // Calculate language scores
     const langScoreMap = calculateLanguageScores(repoLikeProjects);
     const topLangScores = getTopLanguages(langScoreMap, 3);
-    
+
     const topLangWeight = topLangScores.reduce((sum, l) => sum + l.weight, 0);
 
     const topLanguages: Language[] = topLangScores.map(lang => {
@@ -165,7 +166,7 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
         color: langColors[lang.name] || "#A3A3A3"
       };
     });
-    
+
     if (topLanguages.length > 0) {
       const sum = topLanguages.reduce((s, l) => s + l.percentage, 0);
       if (sum !== 100 && sum > 0) {
@@ -216,6 +217,9 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
     // E. Archetype
     const archetype = calculateArchetype(contributionBreakdown, communityStats, totalCommits, productivity, weekdayStats);
 
+    // F. Stack Match
+    const stackMatch = calculateStackMatch(topLanguages);
+
     return {
       username: user.username,
       avatarUrl: user.avatar_url,
@@ -231,7 +235,8 @@ export const fetchGitLabUserStory = async (username: string, token: string): Pro
       productivity,
       archetype,
       contributionBreakdown,
-      community: communityStats
+      community: communityStats,
+      stackMatch
     };
 
   } catch (error) {
